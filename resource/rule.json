@@ -1,0 +1,7 @@
+{"file":"rule.png","frames":{
+"tip":{"x":707,"y":1,"w":196,"h":112,"offX":0,"offY":0,"sourceW":196,"sourceH":112},
+"bg3":{"x":354,"y":474,"w":351,"h":471,"offX":0,"offY":0,"sourceW":351,"sourceH":471},
+"bg4":{"x":1,"y":474,"w":351,"h":471,"offX":0,"offY":0,"sourceW":351,"sourceH":471},
+"bg":{"x":354,"y":1,"w":351,"h":471,"offX":0,"offY":0,"sourceW":351,"sourceH":471},
+"bg2":{"x":1,"y":1,"w":351,"h":471,"offX":0,"offY":0,"sourceW":351,"sourceH":471},
+"btn":{"x":707,"y":115,"w":126,"h":39,"offX":0,"offY":0,"sourceW":126,"sourceH":39}}}

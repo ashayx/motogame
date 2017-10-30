@@ -1,0 +1,7 @@
+{"file":"loading.png","frames":{
+"car":{"x":1,"y":1,"w":640,"h":235,"offX":0,"offY":0,"sourceW":640,"sourceH":235},
+"kingsman":{"x":643,"y":182,"w":131,"h":308,"offX":0,"offY":0,"sourceW":131,"sourceH":308},
+"tip":{"x":1,"y":238,"w":113,"h":49,"offX":0,"offY":0,"sourceW":113,"sourceH":49},
+"title":{"x":643,"y":1,"w":297,"h":179,"offX":0,"offY":0,"sourceW":297,"sourceH":179},
+"btn":{"x":776,"y":182,"w":107,"h":99,"offX":0,"offY":0,"sourceW":107,"sourceH":99},
+"btn2":{"x":885,"y":182,"w":90,"h":83,"offX":0,"offY":0,"sourceW":90,"sourceH":83}}}

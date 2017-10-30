@@ -1,0 +1,182 @@
+{
+  "resources": [
+    {
+      "name": "dtime.m4a",
+      "type": "sound",
+      "url": "dtime.m4a"
+    },
+    {
+      "name": "gamejiguang.wav",
+      "type": "sound",
+      "url": "gamejiguang.mp3"
+    },
+    {
+      "name": "game_eat_daoju.wav",
+      "type": "sound",
+      "url": "game_eat_daoju.mp3"
+    },
+    {
+      "name": "eatjinbi",
+      "type": "sound",
+      "url": "game_eat_jinbi.mp3"
+    },
+    {
+      "name": "game_warning",
+      "type": "sound",
+      "url": "game_warning.mp3"
+    },
+    {
+      "name": "game_hit",
+      "type": "sound",
+      "url": "game_hit.wav"
+    },
+    {
+      "name": "hellomoto",
+      "type": "sound",
+      "url": "hellomoto.wav"
+    },
+    
+    {
+      "name": "buttonSound",
+      "type": "sound",
+      "url": "buttonSound.mp3"
+    },
+    {
+      "name": "gamebg",
+      "type": "image",
+      "url": "game_bg.jpg"
+    },
+    
+    {
+      "name": "sharepage",
+      "type": "image",
+      "url": "sharepage.png"
+    },
+    {
+      "name": "loadingnum.fnt",
+      "type": "font",
+      "url": "loadingnum.fnt"
+    },
+    {
+      "name": "rtext.fnt",
+      "type": "font",
+      "url": "rtext.fnt"
+    },
+    {
+      "name": "gamefont",
+      "type": "image",
+      "url": "gamefont.png"
+    },
+    {
+      "name": "gamefont.fnt",
+      "type": "font",
+      "url": "gamefont.fnt"
+    },
+    {
+      "name": "dtime.fnt",
+      "type": "font",
+      "url": "dtime.fnt"
+    },
+    {
+      "name": "rotatip_ske.json",
+      "type": "json",
+      "url": "rotatip_ske.json"
+    },
+    {
+      "name": "rotatip_tex.json",
+      "type": "json",
+      "url": "rotatip_tex.json"
+    },
+    {
+      "name": "rotatip_tex.png",
+      "type": "image",
+      "url": "rotatip_tex.png"
+    },
+    {
+      "name": "kingsman_ske.json",
+      "type": "json",
+      "url": "kingsman_ske.json"
+    },
+    {
+      "name": "kingsman_tex.json",
+      "type": "json",
+      "url": "kingsman_tex.json"
+    },
+    {
+      "name": "kingsman_tex.png",
+      "type": "image",
+      "url": "kingsman_tex.png"
+    },
+    {
+      "name": "resultbg",
+      "type": "image",
+      "url": "resultbg.jpg"
+    },
+    {
+      "name": "welcomebgdark",
+      "type": "image",
+      "url": "welcomebgdark.jpg"
+    },
+    {
+      "name": "welcomebg",
+      "type": "image",
+      "url": "welcomebg.jpg"
+    },
+    {
+      "name": "loadingtopbg2",
+      "type": "image",
+      "url": "loadingtopbg2.jpg"
+    },
+    {
+      "name": "loadingtopbg",
+      "type": "image",
+      "url": "loadingtopbg.png"
+    },
+    {
+      "name": "result",
+      "type": "sheet",
+      "url": "result.json"
+    },
+    {
+      "name": "rule",
+      "type": "sheet",
+      "url": "rule.json"
+    },
+    {
+      "name": "loading",
+      "type": "sheet",
+      "url": "loading.json"
+    },
+    {
+      "name": "game",
+      "type": "sheet",
+      "url": "game.json"
+    },
+    {
+      "name": "welcome",
+      "type": "sheet",
+      "url": "welcome.json"
+    },
+    {
+      "name": "bigbg",
+      "type": "image",
+      "url": "bigbg.jpg"
+    },
+    {
+      "name": "bigbg1",
+      "type": "image",
+      "url": "bigbg1.png"
+    },
+    {
+      "name": "jifenbg",
+      "type": "image",
+      "url": "rulejifen.png"
+    },
+    {
+      "name": "blackbg",
+      "type": "image",
+      "url": "blackbg.png"
+    }
+    
+  ]
+}
