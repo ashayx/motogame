@@ -25,14 +25,14 @@ var RulePage = (function (_super) {
         bgs.graphics.drawRect(0, 0, this.width, this.height);
         bgs.graphics.endFill();
         var box = new egret.Sprite;
-        var bg = this.createBitmap("rule.bg");
+        var bg = this.createBitmap("rule.bg3");
         box.width = bg.width;
         box.height = bg.height;
         box.anchorOffsetX = bg.width / 2;
         box.anchorOffsetY = bg.height / 2;
         box.x = this.width / 2;
         box.y = this.height * .4;
-        var bg2 = this.createBitmap("rule.bg2");
+        var bg2 = this.createBitmap("rule.bg4");
         egret.Tween.get(bg2, { "loop": true })
             .to({ "alpha": 0 }, 500)
             .to({ "alpha": 1 }, 500);

@@ -605,6 +605,7 @@ var GamePage = (function (_super) {
         box.addChild(over);
         box.touchEnabled = true;
         box.once(egret.TouchEvent.TOUCH_TAP, function () {
+            _this.cutHp = null;
             _this.changePage(new ResultPage(SCORE));
         }, this);
         return box;

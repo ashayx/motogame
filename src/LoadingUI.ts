@@ -115,7 +115,7 @@ class LoadingUI extends Page {
         egret.Tween.get(this.loadingtopbg).to({"y": this.loadingtopbg.y + 30}, 700);
         egret.Tween.get(this.title).to({"y": this.title.y + 30}, 500);
 
-        // callback();
+        callback(); // 跳过视频
 
 
         let vBox: HTMLVideoElement = (<HTMLVideoElement>document.getElementById("vBox"));

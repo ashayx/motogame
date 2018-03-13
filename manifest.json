@@ -19,7 +19,7 @@
 		"bin-debug/base/EUtil.js",
 		"bin-debug/GamePage.js",
 		"bin-debug/base/Timer.js",
-		"bin-debug/daoju/ZhangAi.js",
+		"bin-debug/LoadingUI.js",
 		"bin-debug/daoju/enemyCar.js",
 		"bin-debug/daoju/JinBI.js",
 		"bin-debug/daoju/MoDian.js",
@@ -28,6 +28,6 @@
 		"bin-debug/daoju/MoYan.js",
 		"bin-debug/daoju/MoYin.js",
 		"bin-debug/daoju/MoYing.js",
-		"bin-debug/LoadingUI.js"
+		"bin-debug/daoju/ZhangAi.js"
 	]
 }

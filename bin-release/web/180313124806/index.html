@@ -1,0 +1,156 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>motorola</title>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
+    <script id="_wxComJsApiJs" src="http://h1v.cn/WxCom/js/jsapi.js"></script>
+    <script src="./resource/sound.js"></script>
+
+    <style>
+        html, body {
+            -ms-touch-action: none;
+            background: #fff;
+            padding: 0;
+            border: 0;
+            margin: 0;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+<div style="margin: auto;width: 100%;height: 100%;" class="egret-player"
+     data-entry-class="Main"
+     data-orientation="auto"
+     data-scale-mode="fixedWidth"
+     data-frame-rate="30"
+     data-content-width="640"
+     data-content-height="1136"
+     data-show-paint-rect="false"
+     data-multi-fingered="2"
+     data-show-fps="false" data-show-log="false"
+     data-show-fps-style="x:0,y:0,size:12,textColor:0xffffff,bgAlpha:0.9">
+</div>
+
+<!-- <div id="vBox"
+     style="width: 100%;height: 100%;position: absolute;top:0;left:0;z-index: 99999;overflow: hidden;display: none;">
+    <video id="v" src="http://p.h1v.cn/moto/v4.mp4" width="640"
+           height="1040" x5-video-player-type="h5" x5-video-player-fullscreen="true" webkit-playsinline="true"
+           playsinline="true" x5-video-player-fullscreen="true" x5-video-orientation="portraint"
+           style="width: 100%;height: 100%;position: absolute;top:0;left:0;display: none;"
+           poster="./resource/v.jpg"></video>
+</div> -->
+
+<div id="vBox" style="width: 100%;height: 100%;position: absolute;top:0;left:0;display:none;z-index: 99999;overflow: hidden;">
+    <div id="vContent" style="width: 100%;height: 100%;position: absolute;top:0;left:0;overflow: hidden;">
+        <video id="v" src="http://p.h1v.cn/moto/v5.mp4"  x5-video-player-type="h5" x5-video-player-fullscreen="true" webkit-playsinline="true" playsinline="true" x5-video-player-fullscreen="true"
+        x5-video-orientation="portraint" preload="auto" width="640" height="1040" style="width: 100%;height: 100%;position: absolute;top:0;left:0;object-fit: fill;z-index: -99;"></video>
+    </div>
+</div>
+<!-- <div id="vBox" style="width: 100%;height: 100%;position: absolute;top:0;left:0;z-index: 99999;overflow: hidden;display: none;">
+    <video id="v" src="http://p.h1v.cn/moto/v5.mp4" width="640" height="1040" x5-video-player-type="h5" x5-video-player-fullscreen="true"
+        webkit-playsinline="true" playsinline="true" x5-video-player-fullscreen="true" x5-video-orientation="portraint" style="object-fit: fill;position: absolute;top:0;left:0;display: none;"
+        poster="./resource/v.jpg"></video>
+</div> -->
+<div id="money" style="position: absolute; bottom: 50%; left: 41%;width: 30%;color: #fff;font-size: 14px;display: none">
+    
+</div>
+
+<script>
+    
+    document.getElementById("vBox").addEventListener("touchstart", function (e) {
+        e.preventDefault();
+    }, true);
+    var loadScript = function (list, callback) {
+        var loaded = 0;
+        var loadNext = function () {
+            loadSingleScript(list[loaded], function () {
+                loaded++;
+                if (loaded >= list.length) {
+                    callback();
+                }
+                else {
+                    loadNext();
+                }
+            })
+        };
+        loadNext();
+    };
+
+    var loadSingleScript = function (src, callback) {
+        var s = document.createElement('script');
+        s.async = false;
+        s.src = src;
+        s.addEventListener('load', function () {
+            s.parentNode.removeChild(s);
+            s.removeEventListener('load', arguments.callee, false);
+            callback();
+        }, false);
+        document.body.appendChild(s);
+    };
+
+
+    var startGame = function () {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', './manifest.json?v=' + Math.random(), true);
+        xhr.addEventListener("load", function () {
+            var manifest = JSON.parse(xhr.response);
+            var list = manifest.initial.concat(manifest.game);
+            loadScript(list, function () {
+                egret.runEgret({renderMode: "webgl", audioType: 0});
+            });
+        });
+        xhr.send(null);
+    };
+
+
+    wxCom.init({
+        "projectId": "MOTO"
+    }, function () {
+        soundManager.put("bgm", "./resource/bgm.mp3", {"loop": true});
+        initSoundController("#audioBtn");
+        startGame();
+    
+        //  $('#vBox > video').attr({ 'width': '100%', 'height': '100%' })
+        var w = document.body.clientWidth;
+        var h = document.body.clientHeight;
+        var designW = 640;
+        var designH = 1040;
+        var bl = w / h;
+        if (designW / designH > bl) {
+            // 按高度
+            var scale = h / designH;
+            $("#vContent").css({
+                "height": "100%",
+                "width": designW * scale,
+                "left": -(designW * scale - w) / 2
+            });
+        } else {
+            // 按宽度
+            var scale = w / designW;
+            $("#vContent").css({
+                "width": "100%",
+                "height": designH * scale,
+                "top": -(designH * scale - h) / 2
+            });
+        }
+    });
+</script>
+</body>
+
+<script>
+    var _mtac = {"performanceMonitor":1,"senseQuery":1};
+    (function() {
+        var mta = document.createElement("script");
+        mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.4";
+        mta.setAttribute("name", "MTAH5");
+        mta.setAttribute("sid", "500539379");
+        mta.setAttribute("cid", "500539380");
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(mta, s);
+    })();
+</script>
+</html>

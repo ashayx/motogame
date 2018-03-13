@@ -60,6 +60,7 @@ var WelcomePage = (function (_super) {
         cbox.height = ccar.height;
         cbox.anchorOffsetY = cbox.height;
         cbox.y = this.height * .85;
+        cbox.x = 50;
         // let cman: egret.Bitmap = this.createBitmap("welcome.cman");
         var clight = this.createBitmap("welcome.clight");
         var factory = new dragonBones.EgretFactory();
@@ -67,8 +68,8 @@ var WelcomePage = (function (_super) {
         factory.parseTextureAtlasData(RES.getRes("kingsman_tex.json"), RES.getRes("kingsman_tex.png"));
         //直接生成骨骼动画显示对象，该对象实现IArmatureDisplay接口
         var kingsman = factory.buildArmatureDisplay("kingsman");
-        kingsman.x = 117;
-        kingsman.y = 253;
+        kingsman.x = 100 + 50;
+        kingsman.y = 180;
         cbox.addChild(kingsman);
         cbox.addChild(ccar);
         cbox.addChild(clight);

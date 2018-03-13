@@ -32,46 +32,52 @@ var LoadingUI = (function (_super) {
         this.textField.x = this.width * .5;
         this.textField.textAlign = egret.HorizontalAlign.CENTER;
         this.textField.verticalAlign = egret.VerticalAlign.MIDDLE;
-        RES.getResAsync("loadingnum.fnt", function () {
-            RES.getResAsync("loadingtopbg", function () {
-                RES.getResAsync("loadingtopbg2", function () {
-                    RES.getResAsync("loading.title", function () {
-                        RES.getResAsync("loading.tip", function () {
-                            _this.textField.font = RES.getRes("loadingnum.fnt");
-                            _this.textField.text = "0%";
-                            var loadingtopbg = _this.createBitmap("loadingtopbg");
-                            loadingtopbg.anchorOffsetY = loadingtopbg.height;
-                            loadingtopbg.y = _this.height * .55;
-                            var loadingtopbg2 = _this.createBitmap("loadingtopbg2");
-                            loadingtopbg2.anchorOffsetY = loadingtopbg.anchorOffsetY;
-                            loadingtopbg2.y = loadingtopbg.y;
-                            _this.loadingtopbgMask = new egret.Shape;
-                            _this.loadingtopbgMask.graphics.beginFill(0x000000, 1);
-                            _this.loadingtopbgMask.graphics.drawRect(0, 0, loadingtopbg.width, loadingtopbg.height);
-                            _this.loadingtopbgMask.graphics.endFill();
-                            _this.loadingtopbgMask.anchorOffsetY = loadingtopbg.anchorOffsetY;
-                            _this.loadingtopbgMask.y = loadingtopbg.y + _this.loadingtopbgMask.height;
-                            _this.loadingbg = loadingtopbg;
-                            _this.loadingbg.mask = _this.loadingtopbgMask;
-                            // egret.Tween.get(loadingtopbg, {"loop": true})
-                            //     .to({ "alpha": parseInt(this.textField.text)}, 300)
-                            _this.loadingtopbg = loadingtopbg;
-                            _this.textField.y = loadingtopbg.y - loadingtopbg.height / 2;
-                            var title = _this.createBitmap("loading.title", true);
-                            title.x = _this.width / 2;
-                            title.y = _this.height * .6;
-                            _this.title = title;
-                            var tip = _this.createBitmap("loading.tip", true);
-                            tip.x = _this.width / 2;
-                            tip.y = _this.height * .9;
-                            _this.tip = tip;
-                            _this.addChild(_this.loadingtopbgMask);
-                            _this.addChild(loadingtopbg2);
-                            _this.addChild(loadingtopbg);
-                            _this.addChild(tip);
-                            _this.addChild(title);
-                            _this.addChild(_this.textField);
-                            RES.loadGroup("preload");
+        RES.getResAsync("blackbg", function () {
+            RES.getResAsync("loadingnum.fnt", function () {
+                RES.getResAsync("loadingtopbg", function () {
+                    RES.getResAsync("loadingtopbg2", function () {
+                        RES.getResAsync("loading.title", function () {
+                            RES.getResAsync("loading.tip", function () {
+                                _this.textField.font = RES.getRes("loadingnum.fnt");
+                                _this.textField.text = "0%";
+                                var blackBg = _this.createBitmap("blackbg");
+                                blackBg.width = _this.width;
+                                blackBg.height = _this.height;
+                                var loadingtopbg = _this.createBitmap("loadingtopbg");
+                                loadingtopbg.anchorOffsetY = loadingtopbg.height;
+                                loadingtopbg.y = _this.height * .55;
+                                var loadingtopbg2 = _this.createBitmap("loadingtopbg2");
+                                loadingtopbg2.anchorOffsetY = loadingtopbg.anchorOffsetY;
+                                loadingtopbg2.y = loadingtopbg.y;
+                                _this.loadingtopbgMask = new egret.Shape;
+                                _this.loadingtopbgMask.graphics.beginFill(0x000000, 1);
+                                _this.loadingtopbgMask.graphics.drawRect(0, 0, loadingtopbg.width, loadingtopbg.height);
+                                _this.loadingtopbgMask.graphics.endFill();
+                                _this.loadingtopbgMask.anchorOffsetY = loadingtopbg.anchorOffsetY;
+                                _this.loadingtopbgMask.y = loadingtopbg.y + _this.loadingtopbgMask.height;
+                                _this.loadingbg = loadingtopbg;
+                                _this.loadingbg.mask = _this.loadingtopbgMask;
+                                // egret.Tween.get(loadingtopbg, {"loop": true})
+                                //     .to({ "alpha": parseInt(this.textField.text)}, 300)
+                                _this.loadingtopbg = loadingtopbg;
+                                _this.textField.y = loadingtopbg.y - loadingtopbg.height / 2;
+                                var title = _this.createBitmap("loading.title", true);
+                                title.x = _this.width / 2;
+                                title.y = _this.height * .6;
+                                _this.title = title;
+                                var tip = _this.createBitmap("loading.tip", true);
+                                tip.x = _this.width / 2;
+                                tip.y = _this.height * .9;
+                                _this.tip = tip;
+                                _this.addChild(blackBg);
+                                _this.addChild(_this.loadingtopbgMask);
+                                _this.addChild(loadingtopbg2);
+                                _this.addChild(loadingtopbg);
+                                _this.addChild(tip);
+                                _this.addChild(title);
+                                _this.addChild(_this.textField);
+                                RES.loadGroup("preload");
+                            }, _this);
                         }, _this);
                     }, _this);
                 }, _this);
@@ -95,11 +101,11 @@ var LoadingUI = (function (_super) {
         egret.Tween.removeTweens(this.loadingtopbg);
         egret.Tween.get(this.loadingtopbg).to({ "y": this.loadingtopbg.y + 30 }, 700);
         egret.Tween.get(this.title).to({ "y": this.title.y + 30 }, 500);
-        // callback();
+        callback(); // 跳过视频
         var vBox = document.getElementById("vBox");
         var v = document.getElementById("v");
         v.poster = "./resource/v.png";
-        var btn = this.createBtn("loading.btn2", function () {
+        var btn = this.createBtn("loading.btn", function () {
             var ffunc = function () {
                 vBox.style.display = "block";
                 v.style.display = "block";
@@ -112,8 +118,11 @@ var LoadingUI = (function (_super) {
                     soundManager.play("bgm");
                     soundManager.resumeAll();
                     v.removeEventListener("ended", vFunc, true);
-                    if (callback)
+                    if (callback) {
+                        _this.loadingbg.mask = null;
                         callback();
+                    }
+                    ;
                 };
                 v.addEventListener("ended", vFunc, true);
                 v.addEventListener("pause", function () {

@@ -22,7 +22,7 @@ var ResultPage = (function (_super) {
         _this.score = score;
         _this.openid = wxCom.user.openid;
         return _this;
-        // this.openid = 44;
+        // this.openid = 24;
     }
     ResultPage.prototype.init = function () {
         var _this = this;
@@ -32,10 +32,10 @@ var ResultPage = (function (_super) {
         var logo = this.createBitmap("result.logo");
         logo.anchorOffsetX = logo.width / 2;
         logo.x = this.width / 2;
-        logo.y = this.height * .05;
+        logo.y = this.height * .03;
         var phone = this.createBitmap("result.phone", true);
         phone.x = this.width / 2;
-        phone.y = this.height * .32;
+        phone.y = this.height * .28;
         var txt = new egret.BitmapText;
         txt.font = RES.getRes("rtext.fnt");
         txt.width = this.width;
@@ -43,27 +43,24 @@ var ResultPage = (function (_super) {
         txt.anchorOffsetY = txt.height / 2;
         txt.textAlign = egret.HorizontalAlign.CENTER;
         txt.verticalAlign = egret.VerticalAlign.MIDDLE;
-        txt.y = this.height * .54;
+        txt.y = this.height * .5;
         // txt.text = "获得" + this.score + "积分\n可兑换" + this.money +"元代金券";
         //TODO 最高分
         // txt.text = "本次获得" + this.score + "积分\n当前最高分为" + this.highestScore +"分\n可兑换" + this.money +"元代金券";
-        $.post('http://h5.sjzzimu.com/McHouServ/Choice/kingsman_lottert.do', {
-            openid: this.openid,
-            score: this.score
-        }, function (response) {
-            var r = JSON.parse(response);
-            console.log('优惠券', r);
-            if (r.code == -1 || r.code == 1) {
-                $('#money').html(r.couponnum);
-                _this.money = r.parvalue;
-            }
-            else if (r.code == 2) {
-                _this.money = 0;
-                $('#money').html('您还没有获得');
-            }
-            // txt.text = "获得" + this.score + "积分\n可兑换" + this.money + "元代金券";
-            txt.text = "本次获得" + _this.score + "积分\n当前最高分为" + _this.highestScore + "分\n可兑换" + _this.money + "元代金券";
-        });
+        // 优惠券
+        if (this.score === 0) {
+            this.money = 0;
+        }
+        else if (this.score < 80) {
+            this.money = 20;
+        }
+        else if (this.score < 200) {
+            this.money = 50;
+        }
+        else {
+            this.money = 200;
+        }
+        //最高分
         $.post('http://h5.sjzzimu.com/McHouServ/Choice/kingsman_addScore.do', {
             openid: this.openid,
             score: this.score
@@ -75,10 +72,10 @@ var ResultPage = (function (_super) {
         });
         var tip = this.createBitmap("result.tip", true);
         tip.x = this.width / 2;
-        tip.y = txt.y + txt.anchorOffsetY + 30;
+        tip.y = txt.y + txt.anchorOffsetY + 20;
         var btnBox = new egret.Sprite;
         btnBox.width = 280;
-        btnBox.height = 260;
+        btnBox.height = 340;
         btnBox.anchorOffsetX = btnBox.width / 2;
         btnBox.anchorOffsetY = btnBox.height / 2;
         btnBox.x = this.width / 2;
@@ -99,6 +96,23 @@ var ResultPage = (function (_super) {
         selectYouHui.y = 90;
         selectYouHui.alpha = 0;
         var selectYes = this.createBtn("result.yes", function () {
+            $.post('http://h5.sjzzimu.com/McHouServ/Choice/kingsman_lottert.do', {
+                openid: _this.openid,
+                score: _this.score
+            }, function (response) {
+                var r = JSON.parse(response);
+                console.log('优惠券', r);
+                if (r.code == -1 || r.code == 1) {
+                    $('#money').html(r.couponnum);
+                    _this.money = r.parvalue;
+                }
+                else if (r.code == 2) {
+                    _this.money = 0;
+                    $('#money').html('您还没有获得');
+                }
+                // txt.text = "获得" + this.score + "积分\n可兑换" + this.money + "元代金券";
+                // txt.text = "本次获得" + this.score + "积分\n当前最高分为" + this.highestScore + "分\n可兑换" + this.money + "元代金券";
+            });
             selectBox.removeChild(selectYes);
             selectBox.removeChild(selectNo);
             selectYouHui.alpha = 1;
@@ -143,19 +157,41 @@ var ResultPage = (function (_super) {
         var w = body.clientWidth * (selectYouHui.x + selectBox.x + 70) / this.width;
         var h = body.clientHeight * (selectYouHui.y + selectBox.y) / this.height - 5;
         $('#money').css({ left: w, top: h });
-        var sharePage = this.createBitmap("sharepage");
-        sharePage.width = this.width;
-        sharePage.height = this.height;
+        var rule = this.createBtn("result.usejifen", function () {
+            rule.touchEnabled = true;
+            rulejifen.x = 0;
+        });
+        rule.x = this.width - rule.width - 20;
+        rule.y = this.height - rule.height - 30;
+        var rulejifen = this.createBitmap("jifenbg");
+        rulejifen.width = this.width;
+        rulejifen.height = this.height;
+        rulejifen.x = -3000;
+        rulejifen.touchEnabled = true;
+        rulejifen.addEventListener(egret.TouchEvent.TOUCH_TAP, function () {
+            rulejifen.x = -3000;
+        }, this);
+        var sharePage = new egret.Sprite();
         sharePage.x = -3000;
         sharePage.touchEnabled = true;
         sharePage.addEventListener(egret.TouchEvent.TOUCH_TAP, function () {
             sharePage.x = -3000;
         }, this);
+        var shareBg = this.createBitmap("sharepage");
+        shareBg.width = this.width;
+        shareBg.height = this.height;
+        var shareLight = this.createBitmap("result.sharelight");
+        shareLight.y = 0;
+        shareLight.x = 320;
+        var sharePhone = this.createBitmap("result.sharephone");
+        sharePhone.y = this.height * .35;
+        sharePhone.x = 218;
         var btnagain = this.createBtn("result.btnagain", function () {
             _this.changePage(new GamePage());
         });
         var btninvite = this.createBtn("result.btninvite", function () {
             sharePage.x = 0;
+            egret.Tween.get(shareLight).to({ alpha: 0 }, 1300).to({ alpha: 1 }, 1300).to({ alpha: 0 }, 1300).to({ alpha: 1 }, 1300);
             btninvite.touchEnabled = true;
         });
         var btnuse = this.createBtn("result.btnuse", function () {
@@ -165,13 +201,19 @@ var ResultPage = (function (_super) {
                 $('#money').fadeIn();
             }
         });
-        btnagain.x = btninvite.x = btnuse.x = btnBox.width / 2;
+        var btnmore = this.createBtn("result.btnmore", function () {
+            btnmore.touchEnabled = true;
+            window.location.href = 'http://m.motorola.com.cn/store/166.html?hmsr=wechat&hmpl=171026&cid=sqgc2907';
+        });
+        btnagain.x = btninvite.x = btnuse.x = btnmore.x = btnBox.width / 2;
         btnagain.y = 40;
         btninvite.y = 120;
         btnuse.y = 200;
+        btnmore.y = 280;
         btnBox.addChild(btnagain);
         btnBox.addChild(btninvite);
         btnBox.addChild(btnuse);
+        btnBox.addChild(btnmore);
         selectBox.addChild(selectBg);
         selectBox.addChild(selectTitle);
         selectBox.addChild(selectTip);
@@ -180,6 +222,9 @@ var ResultPage = (function (_super) {
         selectBox.addChild(selectNo);
         selectBox.addChild(selectWait);
         selectBox.addChild(selectNow);
+        sharePage.addChild(shareBg);
+        sharePage.addChild(shareLight);
+        sharePage.addChild(sharePhone);
         this.addChild(resultbg);
         this.addChild(phone);
         this.addChild(logo);
@@ -187,7 +232,9 @@ var ResultPage = (function (_super) {
         this.addChild(txt);
         this.addChild(btnBox);
         this.addChild(selectBox);
+        this.addChild(rule);
         this.addChild(sharePage);
+        this.addChild(rulejifen);
         for (var i = 0; i < btnBox.numChildren; i++) {
             var btn = btnBox.getChildAt(i);
             egret.Tween.get(btn).to({ "alpha": 0, "y": btn.y - 50 }, 1).wait(500 + i * 300).to({ "alpha": 1, "y": btn.y }, 500, egret.Ease.backOut);
